@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<div style="position:relative;width:100%;height:100%;overflow:hidden;background:{{ bg }};">
+  <div style="position:absolute;inset:0;background:{{ wash }};"></div>
+  <div style="position:absolute;inset:0;background:{{ vignette }};"></div>
+  <div style="position:absolute;left:14px;bottom:12px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.34);">{{ label }}</div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:480,&quot;height&quot;:320},&quot;label&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;tone&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;green&quot;,&quot;options&quot;:[&quot;green&quot;,&quot;blue&quot;,&quot;gold&quot;,&quot;purple&quot;,&quot;neutral&quot;],&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const tones = {
+      green: { base: '#101d0e', a: 'rgba(210,187,72,0.14)', b: 'rgba(36,64,31,0.85)' },
+      blue: { base: '#07131f', a: 'rgba(69,112,183,0.22)', b: 'rgba(6,29,59,0.88)' },
+      gold: { base: '#1a1409', a: 'rgba(250,184,26,0.16)', b: 'rgba(26,20,9,0.8)' },
+      purple: { base: '#150a1a', a: 'rgba(146,78,124,0.2)', b: 'rgba(51,12,58,0.85)' },
+      neutral: { base: '#131311', a: 'rgba(217,210,196,0.1)', b: 'rgba(10,10,9,0.82)' },
+    };
+    const t = tones[this.props.tone] || tones.neutral;
+    return {
+      bg: t.base,
+      wash: `radial-gradient(120% 100% at 28% 18%, ${t.a} 0%, transparent 62%), linear-gradient(168deg, ${t.b} 0%, ${t.base} 68%)`,
+      vignette: 'radial-gradient(130% 120% at 50% 46%, transparent 38%, rgba(0,0,0,0.42) 100%)',
+      label: this.props.label || '',
+    };
+  }
+}
+
+</script>
+</body>
+</html>
