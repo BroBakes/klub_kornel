@@ -210,7 +210,7 @@
             <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;color:rgba(240,236,226,0.62);">MINUTA FROM ZAGREB</span>
           </div>
         </div>
-        <p style="{{ escapeCopyStyle }}">Klub Kornel sits in the green of Donja Drenova, close to Sveti Ivan Zelina. Near enough for a day or two away, secluded enough to genuinely step out of the everyday.</p>
+        <p style="{{ escapeCopyStyle }}">Klub Kornel sits in the green of Donja Drenova, close to Sveti Ivan Zelina. Wrapped in nature, the estate gives you room for complete rest and enjoyment.</p>
         <div style="display:flex;gap:clamp(24px,4vw,56px);margin-top:clamp(16px,2.6vh,36px);flex-wrap:wrap;">
           <sc-for list="{{ escapeData }}" as="d" hint-placeholder-count="2">
             <div style="{{ d.style }}"><div style="{{ dataLabelStyle }}">{{ d.label }}</div><div style="{{ dataValueStyle }}">{{ d.value }}</div></div>
@@ -379,9 +379,9 @@
     <div style="position:relative;min-height:80vh;display:grid;grid-template-columns:1fr 1fr;" class="kk-split">
       <div style="padding:clamp(70px,9vw,140px) clamp(24px,6vw,80px);display:flex;flex-direction:column;justify-content:center;">
         <span style="{{ eyebrowStyle }}">05 — LOCATION</span>
-        <h2 style="{{ h2Style }}">Close to Zagreb.<br/>A world away.</h2>
-        <div style="margin-top:36px;font-family:'Inter',sans-serif;font-weight:300;font-size:clamp(15px,1.2vw,17px);line-height:2;color:rgba(240,236,226,0.72);">Donja Drenova, Sveti Ivan Zelina<br/>About 30 minutes from Zagreb</div>
-        <a href="#kontakt" style="{{ thinLinkStyle }}margin-top:32px;align-self:flex-start;" onMouseEnter="{{ onCursor('UPIT') }}" onMouseLeave="{{ onCursorLeave }}">GET DIRECTIONS →</a>
+        <h2 style="{{ h2Style }}">A place for moments<br/>you will remember.</h2>
+        <div style="margin-top:36px;font-family:'Inter',sans-serif;font-weight:300;font-size:clamp(15px,1.2vw,17px);line-height:1.55;color:rgba(240,236,226,0.72);">Klub Kornel creates the setting.<br/>People make it memorable.</div>
+        <a href="#kontakt" style="{{ thinLinkStyle }}margin-top:32px;align-self:flex-start;" onMouseEnter="{{ onCursor('UPIT') }}" onMouseLeave="{{ onCursorLeave }}">PLAN YOUR VISIT →</a>
       </div>
       <div style="{{ mapPanelStyle }}">
         <div style="{{ mapContourStyle }}"></div>
@@ -401,7 +401,7 @@
         <div style="{{ mapLabelE }}">SVETI IVAN ZELINA</div>
         <div style="{{ mapLegE }}">≈ 15 min</div>
 
-        <a href="https://www.google.com/maps/place/Klub+Kornel/@45.931790,16.174093,17z" target="_blank" rel="noopener" style="{{ mapLinkStyle }}">OPEN IN MAPS →</a>
+        <a href="https://maps.app.goo.gl/QgA3e7SE4MV7BnPv5" target="_blank" rel="noopener" style="{{ mapLinkStyle }}">OPEN IN MAPS →</a>
       </div>
     </div>
   </section>
@@ -422,7 +422,6 @@
         </div>
       </sc-for>
     </div>
-    <p style="{{ eventsNoteStyle }}">Klub Kornel suits these kinds of gatherings. Availability and programme are agreed for each enquiry individually.</p>
   </section>
 
   <section id="kontakt" style="position:relative;padding:clamp(70px,8vw,130px) 0 clamp(90px,11vw,170px);">
@@ -432,7 +431,7 @@
         <div style="{{ taglineStyleCta }}">SIMPLY PERFECT.</div>
         <span style="{{ eyebrowStyle }}">06 — ENQUIRY</span>
         <h2 style="{{ h2StyleCenter }}">Your time<br/>starts here.</h2>
-        <p style="{{ ctaSubStyle }}">Planning an intimate wedding, a celebration, a seminar or a private gathering?</p>
+        <p style="{{ ctaSubStyle }}">Planning an intimate wedding, a celebration, a seminar or the whole estate to yourselves?</p>
       </div>
       <sc-if value="{{ formSubmitted }}" hint-placeholder-val="{{ false }}">
         <div style="{{ thanksStyle }}">
@@ -454,10 +453,9 @@
           <label style="{{ fieldStyle }}"><span style="{{ fieldLabelStyle }}">TYPE OF EVENT</span>
             <select required="{{ true }}" name="vrsta" style="{{ inputStyle }}">
               <option value="">—</option>
-              <option>Proslava</option>
-              <option>Poslovno okupljanje</option>
-              <option>Privatno okupljanje</option>
-              <option>Ostalo</option>
+              <option>Private gathering</option>
+              <option>Corporate gathering</option>
+              <option>Other</option>
             </select>
           </label>
           <label style="{{ fieldStyleWide }}"><span style="{{ fieldLabelStyle }}">MESSAGE</span><textarea required="{{ true }}" rows="3" name="poruka" style="{{ inputStyle }}"></textarea></label>
@@ -523,8 +521,8 @@ const INQUIRY_KEY = '67dd1acc-ddbc-406e-8765-1bfe9542d94e';
 const PLAN_ZONES = [
   { key: 'restoran', mx: 4, my: 14, mw: 92, mh: 15, grade: 'filter:saturate(0.9) contrast(1.05) brightness(0.94);', label: 'RESTAURANT', desc: 'More than 70 seats, a professional kitchen and a bar — everything a good gathering needs.', x: 15, y: 27, w: 33, h: 26, img: 'restoran, dugi stol', tone: 'gold', src: '../assets/plan-restoran.jpg', alt: 'The Klub Kornel restaurant full of guests at long tables' },
   { key: 'wellness', mx: 4, my: 48, mw: 44, mh: 13, grade: 'filter:saturate(0.95) contrast(1.06) brightness(0.9);', label: 'WELLNESS', desc: 'Unhurried relaxation: indoor pool, jacuzzi and sauna.', x: 15, y: 58, w: 23, h: 22, img: 'unutarnji bazen, odsjaji na vodi', tone: 'blue', src: '../assets/plan-wellness.jpg', alt: 'The indoor pool at Klub Kornel in blue light' },
-  { key: 'ap1', mx: 4, my: 32, mw: 44, mh: 13, grade: 'filter:saturate(0.95) contrast(1.03) brightness(1);', label: 'APARTMENT I', desc: 'Three rooms and four beds for up to eight people — the roomier choice for families and larger groups.', x: 53, y: 23, w: 17, h: 18, img: 'interijer apartmana I', tone: 'neutral', src: '../assets/plan-ap1.jpg', alt: 'The dining corner of Apartment I with a bench and green chairs' },
-  { key: 'ap2', mx: 52, my: 32, mw: 44, mh: 13, grade: 'filter:saturate(0.95) contrast(1.03) brightness(1);', src: '../assets/ap2.jpg', alt: 'The bedroom of Apartment II with two beds and warm light', label: 'APARTMENT II', desc: 'Two rooms and three beds for up to six people — a more intimate space for smaller groups.', x: 53, y: 45, w: 17, h: 13, img: 'interijer apartmana II', tone: 'neutral' },
+  { key: 'ap1', mx: 4, my: 32, mw: 44, mh: 13, grade: 'filter:saturate(0.95) contrast(1.03) brightness(1);', label: 'APARTMENT I', desc: 'Three rooms, three beds and a sofa bed — up to eight people, the roomier choice for families and larger groups.', x: 53, y: 23, w: 17, h: 18, img: 'interijer apartmana I', tone: 'neutral', src: '../assets/plan-ap1.jpg', alt: 'The dining corner of Apartment I with a bench and green chairs' },
+  { key: 'ap2', mx: 52, my: 32, mw: 44, mh: 13, grade: 'filter:saturate(0.95) contrast(1.03) brightness(1);', src: '../assets/ap2.jpg', alt: 'The bedroom of Apartment II with two beds and warm light', label: 'APARTMENT II', desc: 'Two rooms, two beds and a sofa bed for up to six people — a more intimate space for smaller groups.', x: 53, y: 45, w: 17, h: 13, img: 'interijer apartmana II', tone: 'neutral' },
   { key: 'vanjski', mx: 52, my: 48, mw: 44, mh: 13, grade: 'filter:saturate(0.86) contrast(1.09) brightness(0.93);', label: 'OUTDOOR SPACE', desc: 'Open greenery, a terrace and room to gather outdoors, looking out over the hills of Donja Drenova.', x: 73, y: 21, w: 17, h: 31, img: 'lawn and trees', tone: 'green', src: '../assets/plan-vanjski.jpg', alt: 'The covered lookout gazebo on the estate, facing the hills at sunset' },
   { key: 'bbq', mx: 4, my: 64, mw: 44, mh: 13, grade: 'filter:saturate(0.9) contrast(1.07) brightness(0.95);', label: 'GAZEBO', desc: 'A separate outdoor space for gathering and cooking — from the grill and spit-roast lamb or pork to slow-cooked stews.', x: 76, y: 60, w: 14, h: 14, img: 'gazebo with grill', tone: 'purple', src: '../assets/plan-sjenica.jpg', alt: 'The covered gazebo with its grill and benches at sunset' },
   { key: 'igraliste', mx: 52, my: 64, mw: 44, mh: 13, label: 'PLAYGROUND', desc: 'Room to play outdoors, for the youngest guests.', x: 42, y: 67, w: 15, h: 12, img: 'playground', tone: 'gold' },
@@ -532,8 +530,8 @@ const PLAN_ZONES = [
 ];
 
 const APARTMENTS = [
-  { key: 'a0', name: 'APARTMENT I', rooms: 'Three rooms', desc: 'Four beds for up to eight people — the roomier choice for families and larger groups.', imgLabel: 'apartman I', tone: 'neutral', side: 'left', cta: 'CHECK AVAILABILITY →', src: '../assets/plan-ap1.jpg', srcw: 1448, alt: 'The dining corner of Apartment I with a bench and green chairs' },
-  { key: 'a1', name: 'APARTMENT II', rooms: 'Two rooms', desc: 'Three beds for up to six people — a more intimate space for smaller groups.', imgLabel: 'apartman II', tone: 'gold', side: 'right', src: '../assets/ap2.jpg', srcw: 1448, alt: 'The bedroom of Apartment II with two beds and warm light', cta: 'CHECK AVAILABILITY →' },
+  { key: 'a0', name: 'APARTMENT I', rooms: 'Three rooms', desc: 'Three beds and a sofa bed, for up to eight people — the roomier choice for families and larger groups.', imgLabel: 'apartman I', tone: 'neutral', side: 'left', cta: 'CHECK AVAILABILITY →', src: '../assets/plan-ap1.jpg', srcw: 1448, alt: 'The dining corner of Apartment I with a bench and green chairs' },
+  { key: 'a1', name: 'APARTMENT II', rooms: 'Two rooms', desc: 'Two beds and a sofa bed for up to six people — a more intimate space for smaller groups.', imgLabel: 'apartman II', tone: 'gold', side: 'right', src: '../assets/ap2.jpg', srcw: 1448, alt: 'The bedroom of Apartment II with two beds and warm light', cta: 'CHECK AVAILABILITY →' },
 ];
 
 const WELLNESS_BEATS = [
@@ -1023,7 +1021,6 @@ class Component extends DCLogic {
 
       // one contour layer across the whole closing surface
       closingContourStyle: contour(0.17, '1300px', '-webkit-mask-image:linear-gradient(180deg,transparent 0%,rgba(0,0,0,0.35) 22%,#000 46%,#000 88%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0%,rgba(0,0,0,0.35) 22%,#000 46%,#000 88%,transparent 100%);z-index:0;'),
-      eventsNoteStyle: "position:relative;z-index:5;max-width:500px;margin:clamp(28px,3.5vw,50px) auto 0;padding:0 24px;text-align:center;font-family:'Inter',sans-serif;font-weight:300;font-size:13.5px;line-height:1.95;color:rgba(240,236,226,0.6);",
       eventRows: EVENTS.map((e, i) => {
         // continuous horizontal loop: two identical halves, so a −50% shift lands
         // back at the start. Even rows travel left, odd rows right.
@@ -1052,10 +1049,10 @@ class Component extends DCLogic {
       mapNodeC: 'position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:11px;height:11px;border-radius:50%;background:#FAB81A;box-shadow:0 0 0 8px rgba(250,184,26,0.14),0 0 0 20px rgba(250,184,26,0.07);',
       mapNodeE: 'position:absolute;left:90%;top:85%;transform:translate(-50%,-50%);width:7px;height:7px;border-radius:50%;background:rgba(240,236,226,0.55);',
       mapLabelW: `position:absolute;left:10%;top:calc(17.5% - 38px);transform:translateX(-24%);white-space:nowrap;font-family:'JetBrains Mono',monospace;font-size:${mob ? 9 : 10.5}px;letter-spacing:0.16em;color:rgba(240,236,226,0.72);`,
-      mapLabelE: `position:absolute;left:90%;top:calc(85% + 18px);transform:translateX(-${mob ? 82 : 76}%);white-space:nowrap;font-family:'JetBrains Mono',monospace;font-size:${mob ? 9 : 10}px;letter-spacing:0.13em;color:rgba(240,236,226,0.72);`,
+      mapLabelE: `position:absolute;left:90%;top:calc(85% - 38px);transform:translateX(-${mob ? 82 : 76}%);white-space:nowrap;font-family:'JetBrains Mono',monospace;font-size:${mob ? 9 : 10}px;letter-spacing:0.13em;color:rgba(240,236,226,0.72);`,
       mapLabelC: `position:absolute;left:50%;top:calc(50% - ${mob ? 32 : 42}px);transform:translateX(-50%);white-space:nowrap;font-family:${BRAND};font-weight:300;font-size:${mob ? '15px' : 'clamp(15px,1.5vw,22px)'};letter-spacing:0.04em;color:#FAB81A;`,
       mapLegW: `position:absolute;left:10%;top:calc(17.5% - 20px);transform:translateX(-24%);white-space:nowrap;font-family:'JetBrains Mono',monospace;font-size:${mob ? 9 : 10}px;letter-spacing:0.16em;color:rgba(240,236,226,0.55);`,
-      mapLegE: `position:absolute;left:90%;top:calc(85% + 38px);transform:translateX(-${mob ? 82 : 76}%);white-space:nowrap;font-family:'JetBrains Mono',monospace;font-size:${mob ? 9 : 10}px;letter-spacing:0.16em;color:rgba(240,236,226,0.55);`,
+      mapLegE: `position:absolute;left:90%;top:calc(85% - 20px);transform:translateX(-${mob ? 82 : 76}%);white-space:nowrap;font-family:'JetBrains Mono',monospace;font-size:${mob ? 9 : 10}px;letter-spacing:0.16em;color:rgba(240,236,226,0.55);`,
       mapLinkStyle: `position:absolute;left:clamp(16px,2vw,26px);bottom:clamp(16px,2vw,26px);${mob ? 'padding-top:18px;' : ''}font-family:'JetBrains Mono',monospace;font-size:${mob ? 10.5 : 10}px;letter-spacing:0.18em;color:#FAB81A;border-bottom:1px solid rgba(250,184,26,0.45);padding-bottom:5px;`,
 
       // cta
