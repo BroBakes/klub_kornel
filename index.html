@@ -200,7 +200,7 @@
       <div style="{{ escapeColStyle }}">
         <span style="{{ eyebrowStyle }}">01 — MJESTO</span>
         <h2 style="{{ escapeH2Style }}">
-          <span style="{{ escapeLine1Style }}">POLA SATA<br/>OD ZAGREBA.</span>
+          <span style="{{ escapeLine1Style }}">SAMO POLA SATA<br/>OD ZAGREBA.</span>
           <span style="{{ escapeLine2Style }}">DALEKO OD<br/>SVAKODNEVICE.</span>
         </h2>
         <div style="{{ escapeMeterStyle }}">
@@ -210,7 +210,7 @@
             <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;color:rgba(240,236,226,0.62);">MINUTA OD ZAGREBA</span>
           </div>
         </div>
-        <p style="{{ escapeCopyStyle }}">Klub Kornel smješten je u zelenilu Donje Drenove, nadomak Svetog Ivana Zeline i svega pola sata od Zagreba. Dovoljno blizu za bijeg na dan ili dva, a opet dovoljno izdvojen da se zaista odmaknete od svakodnevice.</p>
+        <p style="{{ escapeCopyStyle }}">Klub Kornel smješten je u zelenilu Donje Drenove, nadomak Svetog Ivana Zeline. Dovoljno blizu za bijeg na dan ili dva, a opet dovoljno izdvojen da se zaista odmaknete od svakodnevice.</p>
         <div style="display:flex;gap:clamp(24px,4vw,56px);margin-top:clamp(16px,2.6vh,36px);flex-wrap:wrap;">
           <sc-for list="{{ escapeData }}" as="d" hint-placeholder-count="2">
             <div style="{{ d.style }}"><div style="{{ dataLabelStyle }}">{{ d.label }}</div><div style="{{ dataValueStyle }}">{{ d.value }}</div></div>
@@ -789,12 +789,12 @@ class Component extends DCLogic {
       escapePhotoStyle: `width:100%;height:100%;object-fit:cover;object-position:${mob ? '58% 52%' : '62% 55%'};display:block;`
         + GRADE('filter:saturate(0.88) contrast(1.08) brightness(0.94);'),
       heroSectionStyle: `position:relative;height:100svh;min-height:${mob ? 480 : 600}px;overflow:hidden;`,
-      heroImgStyle: `width:100%;height:100%;object-fit:cover;object-position:${mob ? '46% 74%' : '38% 68%'};display:block;backface-visibility:hidden;`
+      heroImgStyle: `width:100%;height:100%;object-fit:cover;object-position:${mob ? '52% 72%' : '46% 62%'};display:block;backface-visibility:hidden;`
         + (mob ? '' : '')
         + (reduced ? '' : 'animation:kk-hero-drift 34s ease-in-out infinite;'),
 
       // hero — foreground / background depth
-      heroLayerFar: `position:absolute;inset:0;transform:scale(${1 + heroP * (mob ? 0.03 : 0.06)});transform-origin:${mob ? '46% 74%' : '42% 68%'};will-change:transform;`,
+      heroLayerFar: `position:absolute;inset:0;transform:scale(${1 + heroP * (mob ? 0.03 : 0.06)});transform-origin:${mob ? '52% 72%' : '46% 62%'};will-change:transform;`,
       heroTopVeilStyle: `position:absolute;inset:0;z-index:3;pointer-events:none;display:${mob ? 'block' : 'none'};background:linear-gradient(180deg,rgba(4,8,6,0.86) 0%,rgba(4,8,6,0.6) 30%,rgba(4,8,6,0.18) 54%,transparent 70%);`,
       heroGlowStyle: `position:absolute;display:${mob ? 'none' : 'block'};left:14%;top:58%;width:48%;height:30%;z-index:1;pointer-events:none;border-radius:50%;filter:blur(46px);background:radial-gradient(closest-side, rgba(250,184,26,0.5), transparent 100%);opacity:0.18;`
         + (reduced ? '' : 'animation:kk-hero-glow 9s ease-in-out infinite;'),
