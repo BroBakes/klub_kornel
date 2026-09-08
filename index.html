@@ -435,7 +435,7 @@
         <div style="{{ taglineStyleCta }}">JEDNOSTAVNO SAVRŠENO.</div>
         <span style="{{ eyebrowStyle }}">06 — UPIT</span>
         <h2 style="{{ h2StyleCenter }}">Vaše vrijeme<br/>počinje ovdje.</h2>
-        <p style="{{ ctaSubStyle }}">Planirate intimno vjenčanje, proslavu, seminar ili cijelo imanje samo za sebe?</p>
+        <p style="{{ ctaSubStyle }}">Planirate intimno vjenčanje, proslavu, seminar ili želite cijelo imanje samo za sebe?</p>
       </div>
       <sc-if value="{{ formSubmitted }}" hint-placeholder-val="{{ false }}">
         <div style="{{ thanksStyle }}">
@@ -844,7 +844,7 @@ class Component extends DCLogic {
       escapeMinutes: reduced ? '15' : String(Math.round(15 * escMeter)),
       escapeCopyStyle: `font-family:'Inter',sans-serif;font-weight:300;font-size:clamp(13px,1.15vw,16.5px);line-height:1.75;color:rgba(240,236,226,0.66);max-width:420px;margin:clamp(14px,2.4vh,30px) 0 0;opacity:${reduced ? 1 : escA3};transform:translateY(${(1 - escA3) * 14}px);`,
       escapeData: [
-        { label: 'JESTE LI ZNALI?', value: '„Kornel“ je drugo ime za drijen (lat. Cornus mas), grm sitnih crvenih plodova koji raste u ovom kraju. Inspiriran drijenom, naš logo kroz isprepletene listove i grane oblikuje slovo K.' },
+        { label: 'JESTE LI ZNALI?', value: 'Naziv Kluba Kornel inspiriran je drijenom (lat. Cornus mas), grmom sitnih crvenih plodova koji raste u ovom kraju. Njegov je motiv prisutan i u našem logotipu, gdje se listovi i grane isprepliću u slovo K.' },
       ].map((d, i) => ({
         ...d,
         style: `opacity:${reduced ? 1 : Math.min(1, Math.max(0, escA3 * 2 - i * 0.5))};transform:translateY(${(1 - escA3) * 12}px);transition:opacity .6s;`
