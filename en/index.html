@@ -149,9 +149,9 @@
             <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(250,184,26,0.55);margin-right:22px;vertical-align:middle;">{{ link.num }}</span>{{ link.label }}
           </a>
         </sc-for>
-        <a href="#kontakt" onClick="{{ closeMenu }}" style="{{ menuInquiryStyle }}">SEND AN ENQUIRY →</a>
-        <a href="https://maps.app.goo.gl/QgA3e7SE4MV7BnPv5" target="_blank" rel="noopener" style="{{ menuMapsStyle }}" onMouseOver="{{ onMapEnter }}" onMouseOut="{{ onMapLeave }}">FIND US ON GOOGLE MAPS →</a>
-        <a href="{{ langHref }}" style="{{ langMenuStyle }}">PREBACI NA HRVATSKI →</a>
+        <a href="#kontakt" onClick="{{ closeMenu }}" style="{{ menuInquiryStyle }}">SEND AN ENQUIRY <span style="opacity:0.75;">→</span></a>
+        <a href="https://maps.app.goo.gl/QgA3e7SE4MV7BnPv5" target="_blank" rel="noopener" style="{{ menuMapsStyle }}" onMouseOver="{{ onMapEnter }}" onMouseOut="{{ onMapLeave }}"><span style="display:inline-block;vertical-align:middle;width:4px;height:4px;flex:none;border-radius:50%;background:#FAB81A;"></span>FIND US ON GOOGLE MAPS <span style="opacity:0.75;">→</span></a>
+        <a href="{{ langHref }}" style="{{ langMenuStyle }}"><span style="display:inline-block;vertical-align:middle;width:4px;height:4px;flex:none;border-radius:50%;background:#FAB81A;"></span>PREBACI NA HRVATSKI <span style="opacity:0.75;">→</span></a>
         <span style="{{ menuSocialLabelStyle }}">FIND US ON:</span>
         <div style="{{ menuSocialStyle }}">
           <a href="https://www.instagram.com/thekornelklub/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram" style="{{ socialMarkStyle }}">
@@ -406,7 +406,7 @@
         <div style="{{ mapLabelE }}">SVETI IVAN ZELINA</div>
         <div style="{{ mapLegE }}">≈ 15 min</div>
 
-        <a href="https://maps.app.goo.gl/QgA3e7SE4MV7BnPv5" target="_blank" rel="noopener" style="{{ mapLinkStyle }}" onMouseEnter="{{ onMapEnter }}" onMouseLeave="{{ onMapLeave }}">FIND US ON GOOGLE MAPS →</a>
+        <a href="https://maps.app.goo.gl/QgA3e7SE4MV7BnPv5" target="_blank" rel="noopener" style="{{ mapLinkStyle }}" onMouseEnter="{{ onMapEnter }}" onMouseLeave="{{ onMapLeave }}">FIND US ON GOOGLE MAPS <span style="opacity:0.75;">→</span></a>
       </div>
     </div>
   </section>
@@ -783,7 +783,7 @@ class Component extends DCLogic {
       }),
       closeMenu: () => { document.body.classList.remove('kk-locked'); this.setState({ menuOpen: false }); },
       menuOverlayStyle: `position:fixed;inset:0;z-index:380;background:#040806;display:flex;align-items:flex-start;overflow-y:auto;overflow-x:hidden;padding:calc(env(safe-area-inset-top,0px) + clamp(96px,14vh,150px)) 0 clamp(40px,7vh,72px);box-sizing:border-box;opacity:${s.menuOpen ? 1 : 0};pointer-events:${s.menuOpen ? 'auto' : 'none'};transition:opacity .6s cubic-bezier(.2,.7,.3,1);`,
-      menuInquiryStyle: `display:${mob ? 'inline-block' : 'none'};align-self:flex-start;width:fit-content;margin-top:30px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#FAB81A;border-bottom:1px solid rgba(250,184,26,0.45);padding-bottom:7px;opacity:${s.menuOpen ? 1 : 0};transition:opacity .7s .45s;`,
+      menuInquiryStyle: `display:none;align-items:center;justify-content:space-between;width:100%;box-sizing:border-box;margin-top:26px;padding:15px 16px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.18em;color:#FAB81A;background:rgba(250,184,26,0.07);border:1px solid rgba(250,184,26,0.5);opacity:${s.menuOpen ? 1 : 0};transition:opacity .7s .45s;`,
       menuContourStyle: contour(0.13, '1200px'),
       menuLinks: MENU_LINKS.map((l, i) => ({
         ...l,
@@ -1149,8 +1149,8 @@ class Component extends DCLogic {
       langSepStyle: `font-family:'JetBrains Mono',monospace;font-size:${mob ? 11 : 10.5}px;color:rgba(240,236,226,0.3);`,
       langOtherStyle: `font-family:'JetBrains Mono',monospace;font-size:${mob ? 11 : 10.5}px;letter-spacing:0.16em;color:rgba(240,236,226,0.58);${mob ? 'padding:6px 4px;' : ''}`,
       langNavStyle: `display:inline-block;font-family:'JetBrains Mono',monospace;font-size:${mob ? 11 : 10.5}px;letter-spacing:0.18em;color:rgba(240,236,226,0.66);border-bottom:1px solid rgba(240,236,226,0.24);${mob ? 'padding:14px 2px 5px;' : 'padding-bottom:5px;'}margin-right:${mob ? 14 : 22}px;`,
-      langMenuStyle: `display:inline-block;align-self:flex-start;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.16em;color:#FAB81A;border-bottom:1px solid rgba(250,184,26,0.45);padding-bottom:6px;margin-top:${mob ? 22 : 30}px;opacity:${s.menuOpen ? 1 : 0};transition:opacity .7s .48s;`,
-      menuMapsStyle: `display:inline-flex;align-items:center;gap:0.7em;align-self:flex-start;width:fit-content;margin-top:${mob ? 22 : 28}px;font-family:'JetBrains Mono',monospace;font-size:${mob ? 10.5 : 10}px;letter-spacing:0.18em;color:#F0ECE2;background:rgba(240,236,226,0.04);border:1px solid rgba(240,236,226,0.22);padding:11px 15px;transition:background .35s,border-color .35s,color .35s;opacity:${s.menuOpen ? 1 : 0};transform:translateY(${s.menuOpen ? 0 : 16}px);transition:opacity .7s .46s,transform .7s cubic-bezier(.2,.7,.3,1) .46s,background .35s,border-color .35s,color .35s;`,
+      langMenuStyle: `display:inline-flex;align-items:center;gap:0.85em;align-self:flex-start;width:fit-content;font-family:'JetBrains Mono',monospace;font-size:${mob ? 10.5 : 11}px;letter-spacing:0.16em;color:#FAB81A;margin-top:${mob ? 14 : 18}px;opacity:${s.menuOpen ? 1 : 0};transition:opacity .7s .48s;`,
+      menuMapsStyle: `display:inline-flex;align-items:center;gap:0.85em;align-self:flex-start;width:fit-content;font-family:'JetBrains Mono',monospace;font-size:${mob ? 10.5 : 11}px;letter-spacing:0.16em;color:#F0ECE2;margin-top:${mob ? 28 : 32}px;opacity:${s.menuOpen ? 1 : 0};transition:opacity .7s .46s;`,
       menuSocialLabelStyle: `display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;color:rgba(240,236,226,0.5);margin-top:${mob ? 24 : 36}px;opacity:${s.menuOpen ? 1 : 0};transition:opacity .7s .5s;`,
       menuSocialStyle: `display:flex;align-items:center;gap:10px;margin-left:-10px;margin-top:${mob ? 4 : 6}px;opacity:${s.menuOpen ? 1 : 0};transition:opacity .7s .52s;`,
       socialMarkStyle: `display:flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;color:rgba(250,184,26,0.82);`,
