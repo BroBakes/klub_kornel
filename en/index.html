@@ -142,7 +142,7 @@
   <!-- ── FULLSCREEN MENU ── -->
   <div style="{{ menuOverlayStyle }}">
     <div style="{{ menuContourStyle }}"></div>
-    <div style="position:relative;z-index:2;width:100%;max-width:1400px;margin:0 auto;padding:0 clamp(24px,6vw,80px);display:grid;grid-template-columns:1.5fr 1fr;gap:60px;align-items:center;" class="kk-split">
+    <div style="position:relative;z-index:2;width:100%;max-width:1400px;margin:auto;padding:0 clamp(24px,6vw,80px);display:grid;grid-template-columns:1.5fr 1fr;gap:60px;align-items:center;" class="kk-split">
       <div style="display:flex;flex-direction:column;gap:clamp(2px,0.8vw,8px);">
         <sc-for list="{{ menuLinks }}" as="link" hint-placeholder-count="7">
           <a href="{{ link.href }}" onClick="{{ closeMenu }}" style="{{ link.style }}">
@@ -150,6 +150,7 @@
           </a>
         </sc-for>
         <a href="#kontakt" onClick="{{ closeMenu }}" style="{{ menuInquiryStyle }}">SEND AN ENQUIRY →</a>
+        <a href="https://maps.app.goo.gl/QgA3e7SE4MV7BnPv5" target="_blank" rel="noopener" style="{{ menuMapsStyle }}" onMouseOver="{{ onMapEnter }}" onMouseOut="{{ onMapLeave }}">FIND US ON GOOGLE MAPS →</a>
         <a href="{{ langHref }}" style="{{ langMenuStyle }}">PREBACI NA HRVATSKI →</a>
         <span style="{{ menuSocialLabelStyle }}">FIND US ON:</span>
         <div style="{{ menuSocialStyle }}">
@@ -405,7 +406,7 @@
         <div style="{{ mapLabelE }}">SVETI IVAN ZELINA</div>
         <div style="{{ mapLegE }}">≈ 15 min</div>
 
-        <a href="https://maps.app.goo.gl/QgA3e7SE4MV7BnPv5" target="_blank" rel="noopener" style="{{ mapLinkStyle }}">OPEN IN MAPS →</a>
+        <a href="https://maps.app.goo.gl/QgA3e7SE4MV7BnPv5" target="_blank" rel="noopener" style="{{ mapLinkStyle }}" onMouseEnter="{{ onMapEnter }}" onMouseLeave="{{ onMapLeave }}">FIND US ON GOOGLE MAPS →</a>
       </div>
     </div>
   </section>
@@ -513,8 +514,7 @@ const MENU_LINKS = [
   { num: '01', label: 'ABOUT', href: '#o-nama' },
   { num: '02', label: 'THE ESTATE', href: '#sadrzaji' },
   { num: '03', label: 'STAYING', href: '#smjestaj' },
-  { num: '04', label: 'EVENTS', href: '#dogadjanja' },
-  { num: '05', label: 'CONTACT', href: '#kontakt' },
+  { num: '04', label: 'CONTACT', href: '#kontakt' },
 ];
 
 /* Inquiries go here. Paste the free Web3Forms access key (web3forms.com →
@@ -782,7 +782,7 @@ class Component extends DCLogic {
         return { menuOpen: open };
       }),
       closeMenu: () => { document.body.classList.remove('kk-locked'); this.setState({ menuOpen: false }); },
-      menuOverlayStyle: `position:fixed;inset:0;z-index:380;background:#040806;display:flex;align-items:center;overflow:hidden;padding-top:env(safe-area-inset-top,0px);box-sizing:border-box;opacity:${s.menuOpen ? 1 : 0};pointer-events:${s.menuOpen ? 'auto' : 'none'};transition:opacity .6s cubic-bezier(.2,.7,.3,1);`,
+      menuOverlayStyle: `position:fixed;inset:0;z-index:380;background:#040806;display:flex;align-items:flex-start;overflow-y:auto;overflow-x:hidden;padding:calc(env(safe-area-inset-top,0px) + clamp(96px,14vh,150px)) 0 clamp(40px,7vh,72px);box-sizing:border-box;opacity:${s.menuOpen ? 1 : 0};pointer-events:${s.menuOpen ? 'auto' : 'none'};transition:opacity .6s cubic-bezier(.2,.7,.3,1);`,
       menuInquiryStyle: `display:${mob ? 'inline-block' : 'none'};align-self:flex-start;width:fit-content;margin-top:30px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#FAB81A;border-bottom:1px solid rgba(250,184,26,0.45);padding-bottom:7px;opacity:${s.menuOpen ? 1 : 0};transition:opacity .7s .45s;`,
       menuContourStyle: contour(0.13, '1200px'),
       menuLinks: MENU_LINKS.map((l, i) => ({
@@ -1065,7 +1065,9 @@ class Component extends DCLogic {
       mapLabelC: `position:absolute;left:50%;top:calc(50% - ${mob ? 32 : 42}px);transform:translateX(-50%);white-space:nowrap;font-family:${BRAND};font-weight:300;font-size:${mob ? '15px' : 'clamp(15px,1.5vw,22px)'};letter-spacing:0.04em;color:#FAB81A;`,
       mapLegW: `position:absolute;left:10%;top:calc(17.5% - 20px);transform:translateX(-24%);white-space:nowrap;font-family:'JetBrains Mono',monospace;font-size:${mob ? 9 : 10}px;letter-spacing:0.16em;color:rgba(240,236,226,0.55);`,
       mapLegE: `position:absolute;left:93%;top:calc(72.5% + 32px);transform:translateX(-100%);white-space:nowrap;font-family:'JetBrains Mono',monospace;font-size:${mob ? 9 : 10}px;letter-spacing:0.16em;color:rgba(240,236,226,0.55);`,
-      mapLinkStyle: `position:absolute;left:clamp(16px,2vw,26px);bottom:clamp(16px,2vw,26px);${mob ? 'padding-top:18px;' : ''}font-family:'JetBrains Mono',monospace;font-size:${mob ? 10.5 : 10}px;letter-spacing:0.18em;color:#FAB81A;border-bottom:1px solid rgba(250,184,26,0.45);padding-bottom:5px;`,
+      onMapEnter: (e) => { e.currentTarget.style.background = 'rgba(250,184,26,0.10)'; e.currentTarget.style.borderColor = 'rgba(250,184,26,0.55)'; e.currentTarget.style.color = '#FAB81A'; },
+      onMapLeave: (e) => { e.currentTarget.style.background = 'rgba(240,236,226,0.04)'; e.currentTarget.style.borderColor = 'rgba(240,236,226,0.22)'; e.currentTarget.style.color = '#F0ECE2'; },
+      mapLinkStyle: `position:absolute;left:clamp(16px,2vw,26px);bottom:clamp(16px,2vw,26px);display:inline-flex;align-items:center;gap:0.7em;font-family:'JetBrains Mono',monospace;font-size:${mob ? 10.5 : 11}px;letter-spacing:0.18em;color:#F0ECE2;background:rgba(240,236,226,0.04);border:1px solid rgba(240,236,226,0.22);padding:${mob ? '11px 14px' : '12px 18px'};transition:background .35s,border-color .35s,color .35s;`,
 
       // cta
       ctaSubStyle: `font-family:'Inter',sans-serif;font-weight:300;font-size:${mob ? '15px' : 'clamp(14.5px,1.15vw,17px)'};line-height:1.9;color:rgba(240,236,226,0.66);max-width:430px;margin:${mob ? '20px' : 'clamp(22px,2.4vw,32px)'} auto 0;text-align:center;`,
@@ -1148,6 +1150,7 @@ class Component extends DCLogic {
       langOtherStyle: `font-family:'JetBrains Mono',monospace;font-size:${mob ? 11 : 10.5}px;letter-spacing:0.16em;color:rgba(240,236,226,0.58);${mob ? 'padding:6px 4px;' : ''}`,
       langNavStyle: `display:inline-block;font-family:'JetBrains Mono',monospace;font-size:${mob ? 11 : 10.5}px;letter-spacing:0.18em;color:rgba(240,236,226,0.66);border-bottom:1px solid rgba(240,236,226,0.24);${mob ? 'padding:14px 2px 5px;' : 'padding-bottom:5px;'}margin-right:${mob ? 14 : 22}px;`,
       langMenuStyle: `display:inline-block;align-self:flex-start;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.16em;color:#FAB81A;border-bottom:1px solid rgba(250,184,26,0.45);padding-bottom:6px;margin-top:${mob ? 22 : 30}px;opacity:${s.menuOpen ? 1 : 0};transition:opacity .7s .48s;`,
+      menuMapsStyle: `display:inline-flex;align-items:center;gap:0.7em;align-self:flex-start;width:fit-content;margin-top:${mob ? 22 : 28}px;font-family:'JetBrains Mono',monospace;font-size:${mob ? 10.5 : 10}px;letter-spacing:0.18em;color:#F0ECE2;background:rgba(240,236,226,0.04);border:1px solid rgba(240,236,226,0.22);padding:11px 15px;transition:background .35s,border-color .35s,color .35s;opacity:${s.menuOpen ? 1 : 0};transform:translateY(${s.menuOpen ? 0 : 16}px);transition:opacity .7s .46s,transform .7s cubic-bezier(.2,.7,.3,1) .46s,background .35s,border-color .35s,color .35s;`,
       menuSocialLabelStyle: `display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;color:rgba(240,236,226,0.5);margin-top:${mob ? 24 : 36}px;opacity:${s.menuOpen ? 1 : 0};transition:opacity .7s .5s;`,
       menuSocialStyle: `display:flex;align-items:center;gap:10px;margin-left:-10px;margin-top:${mob ? 4 : 6}px;opacity:${s.menuOpen ? 1 : 0};transition:opacity .7s .52s;`,
       socialMarkStyle: `display:flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;color:rgba(250,184,26,0.82);`,
