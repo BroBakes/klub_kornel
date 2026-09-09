@@ -51,7 +51,7 @@
     font-display: block;
   }
   html { scroll-behavior:smooth; }
-  body { margin:0; background:#050905; }
+  body { margin:0; background:#050905; color-scheme:dark; -webkit-font-smoothing:antialiased; -webkit-tap-highlight-color:rgba(250,184,26,0.18); }
   ::selection { background:#FAB81A; color:#050905; }
   a { color:#FAB81A; text-decoration:none; }
   a:hover { color:#F8C97F; }
@@ -59,6 +59,7 @@
   input, select, textarea, button { font-family:'Inter',sans-serif; }
   input::placeholder, textarea::placeholder { color:rgba(240,236,226,0.3); }
   select option { background:#0a120a; color:#F0ECE2; }
+  select[name="vrsta"] { padding-right:22px !important; background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%229%22 height=%226%22%3E%3Cpath d=%22M0.5 0.5 4.5 5 8.5 0.5%22 fill=%22none%22 stroke=%22%23FAB81A%22 stroke-width=%221%22/%3E%3C/svg%3E'); background-repeat:no-repeat; background-position:right 2px center; }
   :focus-visible { outline:1px solid #FAB81A; outline-offset:4px; }
   @keyframes kk-line { 0%{transform:scaleY(0);transform-origin:top;} 45%{transform:scaleY(1);transform-origin:top;} 55%{transform:scaleY(1);transform-origin:bottom;} 100%{transform:scaleY(0);transform-origin:bottom;} }
   @keyframes kk-marq-l { from { transform:translate3d(0,0,0); } to { transform:translate3d(-50%,0,0); } }
@@ -87,7 +88,7 @@
     input, select, textarea { font-size:16px !important; }
   }
   /* the menu locks the page behind it */
-  body.kk-locked { overflow:hidden !important; touch-action:none; }
+  body.kk-locked { overflow:hidden !important; }
 </style>
 <script>
 (function () {
@@ -453,7 +454,7 @@
           <label style="{{ fieldStyle }}"><span style="{{ fieldLabelStyle }}">IME I PREZIME</span><input required="{{ true }}" name="ime" type="text" style="{{ inputStyle }}" /></label>
           <label style="{{ fieldStyle }}"><span style="{{ fieldLabelStyle }}">E-MAIL</span><input required="{{ true }}" name="email" type="email" style="{{ inputStyle }}" /></label>
           <label style="{{ fieldStyle }}"><span style="{{ fieldLabelStyle }}">TELEFON</span><input required="{{ true }}" name="telefon" type="tel" style="{{ inputStyle }}" /></label>
-          <label style="{{ fieldStyle }}"><span style="{{ fieldLabelStyle }}">DATUM DOGAĐANJA</span><input required="{{ true }}" name="datum" type="date" style="{{ inputStyle }}" /></label>
+          <label style="{{ fieldStyle }}"><span style="{{ fieldLabelStyle }}">DATUM DOGAĐANJA</span><input required="{{ true }}" name="datum" type="date" min="{{ dateMin }}" max="{{ dateMax }}" style="{{ inputStyle }}" /></label>
           <label style="{{ fieldStyle }}"><span style="{{ fieldLabelStyle }}">BROJ OSOBA</span><input required="{{ true }}" name="osobe" type="number" min="1" style="{{ inputStyle }}" /></label>
           <label style="{{ fieldStyle }}"><span style="{{ fieldLabelStyle }}">VRSTA DOGAĐANJA</span>
             <select required="{{ true }}" name="vrsta" style="{{ inputStyle }}">
@@ -689,7 +690,7 @@ class Component extends DCLogic {
     const h2Style = `font-family:${BRAND};font-weight:300;font-size:clamp(30px,4.4vw,64px);line-height:1.1;letter-spacing:-0.005em;color:#F0ECE2;margin:20px 0 0;text-wrap:pretty;`;
     const thinLinkStyle = `display:inline-block;font-family:'JetBrains Mono',monospace;font-size:${mob ? 11 : 10.5}px;letter-spacing:0.2em;color:#FAB81A;border-bottom:1px solid rgba(250,184,26,0.32);`
       + (mob ? 'padding-top:16px;padding-right:4px;' : '') + "padding-bottom:6px;white-space:nowrap;";
-    const inputStyle = `width:100%;background:transparent;border:none;border-bottom:1px solid rgba(240,236,226,0.16);padding:${mob ? '13px 0' : '10px 0'};min-height:${mob ? '54px' : 'auto'};font-size:${mob ? '16px' : '15px'};font-weight:300;color:#F0ECE2;outline:none;box-sizing:border-box;`;
+    const inputStyle = `width:100%;background-color:transparent;appearance:none;-webkit-appearance:none;border-radius:0;-webkit-text-fill-color:#F0ECE2;border:none;border-bottom:1px solid rgba(240,236,226,0.16);padding:${mob ? '14px 0 11px' : '10px 0'};font-size:${mob ? '16px' : '15px'};font-weight:300;color:#F0ECE2;outline:none;box-sizing:border-box;`;
     const contour = (opacity, size, extra) =>
       `position:absolute;inset:0;pointer-events:none;background-image:url('assets/contour-tile-seamless.jpg');background-size:${size} auto;background-repeat:repeat;opacity:${opacity};mix-blend-mode:screen;${extra || ''}`;
 
@@ -769,7 +770,7 @@ class Component extends DCLogic {
         + (mob
           ? `padding:calc(env(safe-area-inset-top,0px) + ${s.scrollY > 80 ? 10 : 14}px) 18px ${s.scrollY > 80 ? 10 : 14}px;`
           : `padding:${s.scrollY > 80 ? '15px' : '26px'} clamp(20px,5vw,64px);`)
-        + `background:${s.scrollY > 80 ? 'rgba(5,9,5,0.7)' : 'transparent'};backdrop-filter:${s.scrollY > 80 ? 'blur(14px) saturate(1.1)' : 'none'};transition:padding .5s cubic-bezier(.2,.7,.3,1),background .5s;`,
+        + `background:${s.scrollY > 80 ? 'rgba(5,9,5,0.7)' : 'transparent'};backdrop-filter:${s.scrollY > 80 ? 'blur(14px) saturate(1.1)' : 'none'};-webkit-backdrop-filter:${s.scrollY > 80 ? 'blur(14px) saturate(1.1)' : 'none'};transition:padding .5s cubic-bezier(.2,.7,.3,1),background .5s;`,
       navLogoStyle: `height:${mob ? (s.scrollY > 80 ? 44 : 54) : (s.scrollY > 80 ? 42 : 56)}px;width:auto;object-fit:contain;transition:height .5s cubic-bezier(.2,.7,.3,1);display:block;`,
       ctaLinkStyle: `display:${mob ? 'none' : 'inline-block'};font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.2em;color:#FAB81A;border-bottom:1px solid rgba(250,184,26,0.28);padding-bottom:5px;white-space:nowrap;`,
       menuBtnStyle: `display:flex;flex-direction:column;align-items:stretch;justify-content:center;gap:6px;background:none;border:none;cursor:pointer;`
@@ -782,7 +783,7 @@ class Component extends DCLogic {
         return { menuOpen: open };
       }),
       closeMenu: () => { document.body.classList.remove('kk-locked'); this.setState({ menuOpen: false }); },
-      menuOverlayStyle: `position:fixed;inset:0;z-index:380;background:#040806;display:flex;align-items:flex-start;overflow-y:auto;overflow-x:hidden;padding:calc(env(safe-area-inset-top,0px) + clamp(96px,14vh,150px)) 0 clamp(40px,7vh,72px);box-sizing:border-box;opacity:${s.menuOpen ? 1 : 0};pointer-events:${s.menuOpen ? 'auto' : 'none'};transition:opacity .6s cubic-bezier(.2,.7,.3,1);`,
+      menuOverlayStyle: `position:fixed;inset:0;z-index:380;background:#040806;display:flex;align-items:flex-start;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:calc(env(safe-area-inset-top,0px) + clamp(96px,14vh,150px)) 0 clamp(40px,7vh,72px);box-sizing:border-box;opacity:${s.menuOpen ? 1 : 0};pointer-events:${s.menuOpen ? 'auto' : 'none'};transition:opacity .6s cubic-bezier(.2,.7,.3,1);`,
       menuInquiryStyle: `display:none;align-items:center;justify-content:space-between;width:100%;box-sizing:border-box;margin-top:26px;padding:15px 16px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.18em;color:#FAB81A;background:rgba(250,184,26,0.07);border:1px solid rgba(250,184,26,0.5);opacity:${s.menuOpen ? 1 : 0};transition:opacity .7s .45s;`,
       menuContourStyle: contour(0.13, '1200px'),
       menuLinks: MENU_LINKS.map((l, i) => ({
@@ -1124,11 +1125,13 @@ class Component extends DCLogic {
       thanksSubStyle: "margin-top:18px;font-family:'Inter',sans-serif;font-weight:300;font-size:14px;line-height:1.9;color:rgba(240,236,226,0.66);",
       fieldStyle: 'display:flex;flex-direction:column;gap:8px;',
       fieldStyleWide: 'display:flex;flex-direction:column;gap:8px;grid-column:1 / -1;',
+      dateMin: new Date(Date.now() + 864e5).toISOString().slice(0, 10),
+      dateMax: `${new Date().getFullYear() + 2}-12-31`,
       optionalStyle: "letter-spacing:0.1em;color:rgba(240,236,226,0.4);",
       fieldLabelStyle: "font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.2em;color:rgba(240,236,226,0.66);",
       submitStyle: `grid-column:1 / -1;background:none;border:none;border-bottom:1px solid rgba(250,184,26,0.5);font-family:'JetBrains Mono',monospace;letter-spacing:0.24em;color:#FAB81A;cursor:pointer;`
         + (mob
-          ? 'justify-self:center;margin-top:22px;min-height:52px;padding:0 4px;font-size:12.5px;'
+          ? 'justify-self:center;margin-top:22px;padding:23px 6px 9px;font-size:12.5px;'
           : "justify-self:center;margin-top:clamp(16px,2vw,30px);padding:0 4px 10px;font-size:12px;"),
 
       footerGridStyle: `margin:0 auto;box-sizing:border-box;padding:0 ${PAD};display:grid;`
